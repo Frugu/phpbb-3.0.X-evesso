@@ -37,15 +37,15 @@ You'll need to replace ``[[YOUR_DOMAIN]]`` tag by your domain, eg. i'll replace 
 
 After that, let's modify phpbb core !
 Go in ``includes`` directory ! Open ``functions.php``. That'll be the most tricky file to edit cause it's separated in two parts.
-Search ``$header_avatar = get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], 24, 24);`` and put the "First part" after that.
+Search ```php $header_avatar = get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], 24, 24);``` and put the "First part" after that.
 Don't forget to replace ``[[YOUR_FORUM_URL]]`` by your forum's url (eg. ``http://frugu.net/``) and ``[[YOUR_EVE_SSO_CLIENT_ID]]`` by the EvE-SSO Client ID you got on [https://developers.eveonline.com](https://developers.eveonline.com) .
-After that, search ``'U_LOGIN_LOGOUT'		=> $u_login_logout,`` and put "Second part" just after it.
+After that, search ```php 'U_LOGIN_LOGOUT'		=> $u_login_logout,``` and put "Second part" just after it.
 
 The hardest part is now done ! Let's save this file and open ``functions_user.php``. Go to the end of the file and copy the code there. That's all.
 
 Save the last file and go to ``session.php``, still in that ``includes`` directory.
-At the end of the file, you'll see ``return $forum_ids;`` and a ``}``. After that ``}``, copy the file i gave you !
-Be carefull ! You need to copy this code between two ``}`` !
+At the end of the file, you'll see ```php return $forum_ids;``` and a ``}``. After that ```php }```, copy the file i gave you !
+Be carefull ! You need to copy this code between two ```php }``` !
 After that you've some replacement to do !
 ``[[YOUR_EVE_SSO_CLIENT_ID]]`` and ``[[YOUR_EVE_SSO_SECRET_KEY]]`` with both Client ID and Secret Key you got on developers website and finally ``[[YOUR_FORUM_URL]]` with your forum URL.
 
@@ -57,7 +57,7 @@ First of all, go into your used style directory ``styles/YOUR_STYLE_NAME``.
 After that, we'll start with an easy step ! Go in ``imageset`` directory and copy the ``EVESSO.png`` file in it. Fast & great. You can change this image later to have another, you can saw alternative on [THIS](https://developers.eveonline.com/resource/single-sign-on) page.
 
 Go back in your style directory and then in ``templates``. Open the ``overall_header.html`` file.
-Search for ``<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->``. You'll replace the whole code between that last code i put and ``<!-- ENDIF -->`` by what i gave to you.
+Search for ```html <!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->```. You'll replace the whole code between that last code i put and ```html <!-- ENDIF -->``` by what i gave to you.
 That'll replace the login stuff by an EvE-SSO image with the good redirection to login :)
 
 After that, you just have to try it, and that'll work ;)
