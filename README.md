@@ -5,7 +5,7 @@
 - [Prelude](https://github.com/Frugu/phpbb-3.0.X-evesso#prelude)
 - [How to ?](https://github.com/Frugu/phpbb-3.0.X-evesso#how-to-)
 - [Integrate it](https://github.com/Frugu/phpbb-3.0.X-evesso#integrate-it)
-- [How it works !](https://github.com/Frugu/phpbb-3.0.X-evesso#)
+- [How it works !](https://github.com/Frugu/phpbb-3.0.X-evesso#how-it-works-)
 - [Who i'm ?](https://github.com/Frugu/phpbb-3.0.X-evesso#who-im-)
 - [Know Issues](https://github.com/Frugu/phpbb-3.0.X-evesso#know-issues)
 
@@ -94,7 +94,7 @@ We've a forum with some groups:
 - Executive Corp Member (group: 13)
 - Alliance Director (group: 14)
 
-``
+```php
 $whitelist = Array(
     'groups'        => Array(
         12,
@@ -110,7 +110,7 @@ $whitelist = Array(
         [ALLIANCE_ID]       => 12
     )
 );
-``
+```
 
 IDs can be found easely, go on zkillboard, check your corporation killboard then look in the link, there is a big number, it's your ID ;)
 Eg. the corp "Black Doom Brotherhood of the Lightning Shadow" (i took the most long corp name i know :D) have the URL: https://zkillboard.com/corporation/98221583/, so his ID is 98221583.
