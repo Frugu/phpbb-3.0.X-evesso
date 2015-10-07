@@ -37,13 +37,17 @@ You'll need to replace ``[[YOUR_DOMAIN]]`` tag by your domain, eg. i'll replace 
 
 After that, let's modify phpbb core !
 Go in ``includes`` directory ! Open ``functions.php``. That'll be the most tricky file to edit cause it's separated in two parts.
-Search ```php
+Search 
+```php
 $header_avatar = get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], 24, 24);
-``` and put the "First part" after that.
+```
+and put the "First part" after that.
 Don't forget to replace ``[[YOUR_FORUM_URL]]`` by your forum's url (eg. ``http://frugu.net/``) and ``[[YOUR_EVE_SSO_CLIENT_ID]]`` by the EvE-SSO Client ID you got on [https://developers.eveonline.com](https://developers.eveonline.com) .
-After that, search ```php
+After that, search 
+```php
 'U_LOGIN_LOGOUT'		=> $u_login_logout,
-``` and put "Second part" just after it.
+``` 
+and put "Second part" just after it.
 
 The hardest part is now done ! Let's save this file and open ``functions_user.php``. Go to the end of the file and copy the code there. That's all.
 
