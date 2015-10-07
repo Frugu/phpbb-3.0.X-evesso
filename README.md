@@ -2,22 +2,33 @@
 
 
 ### Summary
-- Prelude
-- How to ?
-- Integrate it
-- Who i'm ?
-- Know Issues
+- [Prelude](https://github.com/Frugu/phpbb-3.0.X-evesso#prelude)
+- [How to ?](https://github.com/Frugu/phpbb-3.0.X-evesso#how-to-)
+- [Integrate it](https://github.com/Frugu/phpbb-3.0.X-evesso#integrate-it)
+- [How it works !](https://github.com/Frugu/phpbb-3.0.X-evesso#)
+- [Who i'm ?](https://github.com/Frugu/phpbb-3.0.X-evesso#who-im-)
+- [Know Issues](https://github.com/Frugu/phpbb-3.0.X-evesso#know-issues)
 
 ## Prelude
 
-To introduce, all files i'll talk about are available in the ``phpbb-files`` directory. The files are following phpbb structure.
-For example, ``session.php`` is in ``phpbb-files/includes/session.php`` as it does in phpbb 3.0.X
+Hi,
 
-And now, we'll see ... How to be registered on EvE-Developers website :)
-To start, go on [https://developers.eveonline.com](https://developers.eveonline.com). Log in with you eve account (at the top right corner) then go in "Manage Applications".
-Click on "Create New Application". Then you'll have to complete the form. About "Connection Type", that'll be "Authentication Only". And for the callback URL, you have to put your forum's URL with a special script.
-Eg. my forum URL is ``http://frugu.net/`` so i need to put ``http://frugu.net/evesso.php`` ;) (You just have to add ``/evesso.php`` at the end !)
-Then create the Application. You'll now get Client ID and Secret Key ! Keep them somewhere, you'll need them later !
+My name is Mealtime and I am the developer of this plugin.
+As you may know, there is a large demand to securely verify membership of a person on PHPBB forums. In the past there was a module by Cyerus that worked based on the XML API, but this is slow and very fragile for spying. So I decided to work around this problem and design a new login system using the EVE Single Sign On. This way members can link their accounts to their EVE login, and only login via an eve account. This will allow for safer and less privacy sensitive authentication.
+
+#### So what do I need?
+
+- PHPBB 3.0.X
+- Download the source files in this package.
+- An active account on EVE Online.
+
+#### Initial Steps:
+
+In the first set of steps before applying this mod, we will create a developer key for the EVE SSO. In order to do this, please go to https://developers.eveonline.com. Here we will create an application for your webpage by logging into your EVE account and press "Create New Application".
+
+Fill out the form, and set the connection type to "Authentication Only". You'll be asked for a callback URL, which is the URL that refers to the modified script for PHPBB. Normally this script is located in the root of your forum, meaning that your callback URL would be "www.example.com/evesso.php".
+
+When you've done this, you'll see a Client ID and Secret Key. You NEED to save this in order to connect to the application at a later stage.
 
 ## How to ?
 
@@ -50,6 +61,60 @@ Search for ``<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->``. You'll replace
 That'll replace the login stuff by an EvE-SSO image with the good redirection to login :)
 
 After that, you just have to try it, and that'll work ;)
+
+## How it works !
+
+Oh god, the best part ! (Yeah yeah yeah)
+To start this, i'll just link a song, cause it's always better to work with music: https://www.youtube.com/watch?v=ec0XKhAHR5I
+
+So this is quite simple in real.
+
+The user connect throught the EvE-SSO then redirect on evesso.php. In this script, we match a corp & alliance for the character just logged.
+With that data we check if they're on whitelist and to which group they can access.
+If they don't have a created account, we create one and we affect groups to it.
+If they already have an account, we delete all groups that are affectable (eg. directors groups are often not in this whitelist) and we affect missing groups.
+
+#### What the fuck is that whitelist ?
+
+The whitelist is a PHP Array that control the whole access of the forum. It's the main configuration of that plugin.
+He's in ``evesso.php`` file and divided in 4 parts:
+
+- ``groups``, this part is here to manage which groups are supposed to be monitored by this plugin. You need to put ALL GROUPS that you want to be deleted if someone leave the corp in this. Directors groups included ! (Even if you don't put directors groups in other parts)
+- ``character``, this part is to link character with groups
+- ``corporation``, and same as characters but for corporations
+- ``alliance``, and same as corporations but for alliances
+
+Link something (character/corporation/alliance) to a group, is quite easy.
+You just have to put the id of the thing at the left, then the id to link at the right !
+
+Let's do an use case:
+We've a forum with some groups:
+
+- Alliance Member (group: 12)
+- Executive Corp Member (group: 13)
+- Alliance Director (group: 14)
+
+``
+$whitelist = Array(
+    'groups'        => Array(
+        12,
+        13,
+        14
+    ),
+    'character'     => Array(
+    ),
+    'corporation'   => Array(
+        [EXECUTIVE_CORP_ID] => 13
+    ),
+    'alliance'      => Array(
+        [ALLIANCE_ID]       => 12
+    )
+);
+``
+
+IDs can be found easely, go on zkillboard, check your corporation killboard then look in the link, there is a big number, it's your ID ;)
+Eg. the corp "Black Doom Brotherhood of the Lightning Shadow" (i took the most long corp name i know :D) have the URL: https://zkillboard.com/corporation/98221583/, so his ID is 98221583.
+It's same for characters & alliances.
 
 ## Who i'm ?
 
