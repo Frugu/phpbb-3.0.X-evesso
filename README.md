@@ -39,9 +39,9 @@ After that, let's modify phpbb core !
 Go in ``includes`` directory ! Open ``functions.php``. That'll be the most tricky file to edit cause it's separated in two parts.
 Search 
 ```php
-$header_avatar = get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], 24, 24);
+// The following assigns all _common_ variables that may be used at any point in a template.
 ```
-and put the "First part" after that.
+and put the "First part" before that.
 Don't forget to replace ``[[YOUR_FORUM_URL]]`` by your forum's url (eg. ``http://frugu.net/``) and ``[[YOUR_EVE_SSO_CLIENT_ID]]`` by the EvE-SSO Client ID you got on [https://developers.eveonline.com](https://developers.eveonline.com) .
 After that, search 
 ```php
