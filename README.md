@@ -56,16 +56,9 @@ At the end of the file, you'll see
 ```php
 return $forum_ids;
 ```
-and a ``}``. After that
-```php
-}
-```
-, copy the file i gave you !
-Be carefull ! You need to copy this code between two
-```php
-}
-```
-!
+and a `` } ``. After that
+`` } `` , copy the file i gave you !
+Be carefull ! You need to copy this code between two `` } `` !
 After that you've some replacement to do !
 ``[[YOUR_EVE_SSO_CLIENT_ID]]`` and ``[[YOUR_EVE_SSO_SECRET_KEY]]`` with both Client ID and Secret Key you got on developers website and finally ``[[YOUR_FORUM_URL]]` with your forum URL.
 
