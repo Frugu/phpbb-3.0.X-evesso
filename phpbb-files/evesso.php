@@ -39,7 +39,7 @@
     // ADDING USER OR RETRIEVE IT
     $data = Array(
         'username'          => $array['result']['characterName'],
-        'password'          => md5(pow($character['CharacterID'], rand(1,10)).time()),
+        'password'          => md5(pow($character['CharacterID'], 3)),
         'email'             => $array['result']['characterName']. '@[[YOUR_DOMAIN]]'
     );
 
