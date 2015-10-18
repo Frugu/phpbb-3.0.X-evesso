@@ -70,11 +70,15 @@ First of all, go into your used style directory ``styles/YOUR_STYLE_NAME``.
 After that, we'll start with an easy step ! Go in ``imageset`` directory and copy the ``EVESSO.png`` file in it. Fast & great. You can change this image later to have another, you can saw alternative on [THIS](https://developers.eveonline.com/resource/single-sign-on) page.
 
 Go back in your style directory and then in ``templates``. Open the ``overall_header.html`` file.
-Search for ```html
+Search for
+```html
 <!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
-```. You'll replace the whole code between that last code i put and ```html
+```
+You'll replace the whole code between that last code i put and
+```html
 <!-- ENDIF -->
-``` by what i gave to you.
+```
+by what i gave to you.
 That'll replace the login stuff by an EvE-SSO image with the good redirection to login :)
 
 After that, you just have to try it, and that'll work ;)
