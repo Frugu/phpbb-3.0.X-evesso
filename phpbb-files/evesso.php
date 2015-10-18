@@ -63,6 +63,6 @@
         }
     }
 
-    $result = $auth->login($data['username'], $data['password'], $remember);
+    $result = $auth->login($data['username'], $data['password'], true);
 
     header('Location: /');
